@@ -62,6 +62,7 @@ To setup the K8s cluster, navigate to the ansible directory and run
 
 With this version we create 1 control node with 2 worker nodes created in an ASG. In this version we enable inventory plugins in ansible to dynamically retrieve the worker nodes IP addresses. 
 
+```
 v2
 ├── ansible
 │   ├── ansible.cfg
@@ -82,7 +83,7 @@ v2
     ├── terraform.tfstate
     ├── terraform.tfstate.backup
     └── variable.tf
-
+```
 
 ✅ Step 1: Make sure the AWS collection is installed
 
