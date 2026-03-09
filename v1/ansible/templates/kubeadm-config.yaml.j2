@@ -1,0 +1,21 @@
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: ClusterConfiguration
+kubernetesVersion: v1.29.0
+controlPlaneEndpoint: "{{ control_public_dns }}:6443"
+apiServer:
+  certSANs:
+    - "{{ control_public_dns }}"
+    - "{{ control_private_ip }}"
+    - "{{ control_public_ip }}"
+    - "kubernetes"
+    - "kubernetes.default"
+    - "kubernetes.default.svc"
+    - "kubernetes.default.svc.cluster.local"
+networking:
+  podSubnet: 10.245.0.0/16
+---
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: InitConfiguration
+nodeRegistration:
+  criSocket: unix:///run/containerd/containerd.sock
+
