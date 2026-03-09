@@ -9,8 +9,8 @@ This repositrory contains the files to deploy a Kubernetes cluster on AWS. The i
 
 You'll find 2 versions for deploying a Kuberneted Cluster
 
-* version v1: This version conprises 1 control node + 1 worker node. Both nodes run as stand alone nodes (i.e. not in an ASG).
-* version v2: In this version we create 1 control node with 2 worker nodes created in an ASG. That way we can allocate an many worker nodes as we need. 
+* version v1: This version the cluster is made of 1 control node + 1 worker node. Both nodes are not not in an ASG.
+* version v2: In this version we create 1 control node with 2 worker nodes created in an ASG. That way we can easily create an many worker nodes as we need. 
 
 ## Version v1:
 
