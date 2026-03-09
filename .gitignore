@@ -12,6 +12,7 @@
 **terraform.tfstate*
 **facts.json
 **kubeconfigs
+**keypair
 
 # Compiled Java class files
 *.class
