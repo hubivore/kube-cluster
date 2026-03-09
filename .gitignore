@@ -13,6 +13,7 @@
 **facts.json
 **kubeconfigs
 **keypair
+**.pem
 
 # Compiled Java class files
 *.class
