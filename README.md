@@ -9,8 +9,21 @@ This repositrory contains the files to deploy a Kubernetes cluster on AWS. The i
 
 You'll find 2 versions for deploying a Kuberneted Cluster
 
-* version v1: This version the cluster is made of 1 control node + 1 worker node. Both nodes are not not in an ASG.
+* version v1: In this version the cluster is made of 1 control node + 1 worker node. Both nodes are not not in an ASG.
 * version v2: In this version we create 1 control node with 2 worker nodes created in an ASG. That way we can easily create an many worker nodes as we need. 
+
+
+Prerequisites:
+
+* Install awscli, Terraform, and Ansible on your local machine. Make sure you have a valid AWS account with privilege to create resources (EC2, S3).
+
+* If not done already create a key pair named kube-access in AWS and retrieve the private key
+
+	$ aws ec2 create-key-pair --key-name kube-access --query 'KeyMaterial' --output text > kube-access.pem
+
+* After saving the private key file, set the correct permissions:
+
+	$ chmod 400 kube-access.pem
 
 ## Version v1:
 
