@@ -7,10 +7,14 @@ This repositrory contains the files to deploy a Kubernetes cluster on AWS. The i
 * Ansible is responsible for configuring it
 * The “contract” between them is inventory + variables
 
-## Version v1:
-This version conprises 1 control node + 1 worker node. Both nodes run as stand alone nodes (i.e. not in an ASG).
+You'll find 2 versions for deploying a Kuberneted Cluster
 
-We use Terraform to generate Ansible inventory file dynamically. To do so Terraform uses a template file that it polulates at runtime. Once the infrastructure is created you can check connectivity wiith "ansible -m ping all".
+* version v1: This version conprises 1 control node + 1 worker node. Both nodes run as stand alone nodes (i.e. not in an ASG).
+* version v2: In this version we create 1 control node with 2 worker nodes created in an ASG. That way we can allocate an many worker nodes as we need. 
+
+## Version v1:
+
+In this version we use Terraform to generate Ansible inventory file dynamically. To do so Terraform uses a template file that it polulates at runtime. Once the infrastructure is created you can check connectivity wiith "ansible -m ping all".
 
 <pre>
 v1
