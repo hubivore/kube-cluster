@@ -25,6 +25,12 @@ Prerequisites:
 
 	$ chmod 400 kube-access.pem
 
+* Create a user terraform in AWS, create a profile for this user with awscli and export the following environment variable for Terraform 
+
+    $ export ACCESS_KEY=$(aws configure get aws_access_key_id --profile terraform)
+    $ export SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile terraform)
+    $ export AWS_DEFAULT_REGION=$(aws configure get region --profile terraform)
+
 ## Version v1:
 
 In this version we use Terraform to generate Ansible inventory file dynamically. To do so Terraform uses a template file that it polulates at runtime. Once the infrastructure is created you can check connectivity wiith "ansible -m ping all".
@@ -72,8 +78,11 @@ Terraform will create the inventory file that ansible uses to access the node. T
 
 To setup the K8s cluster, navigate to the ansible directory and run
 
-        $ ansible-playbook playbooks/k8s-cluster-setup.yaml   
+    $ ansible-playbook playbooks/k8s-cluster-setup.yaml   
 
+To delete all resources, go to the terraform directory and run
+
+    $ terraform destroy -auto-approve
 
 ## version v2:
 
@@ -157,4 +166,7 @@ To setup the K8s cluster, navigate to the ansible directory and run
 
         $ ansible-playbook playbooks/k8s-cluster-setup.yaml
 
-        
+To delete all resources, go to the terraform directory and run
+
+    $ terraform destroy -auto-approve
+
