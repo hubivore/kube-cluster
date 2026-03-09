@@ -16,7 +16,7 @@ hostnames:
   - dns-name
 
   # This option allows displaying the public ip addresses.
-  - ip-address
+  #- ip-address
 
 groups:
   control: "'control' in tags.Role"
@@ -24,7 +24,7 @@ groups:
 
 
 compose:
-  ansible_ssh_private_key_file: ~/.ssh/wserver-access.pem
+  ansible_ssh_private_key_file: keypair/kube-access.pem
   ansible_host: dns-name
 
   # Host variables that are strings need to be wrapped with two sets of quotes.

@@ -1,6 +1,0 @@
-[control]
-control_node ansible_host=192.168.56.140
-worker ansible_host=192.168.56.141
-
-[all:vars]
-ansible_user=devuser

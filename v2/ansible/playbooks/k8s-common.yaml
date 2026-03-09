@@ -44,7 +44,7 @@
 
     - name: Add Kubernetes apt key
       shell: |
-        curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.35/deb/Release.key \
+        curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key \
         | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
       args:
         creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
@@ -53,7 +53,7 @@
       copy:
         dest: /etc/apt/sources.list.d/kubernetes.list
         content: |
-          deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /
+          deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /
 
     - name: Update apt cache after adding Kubernetes repo
       apt:

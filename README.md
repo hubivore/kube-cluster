@@ -10,7 +10,7 @@ This repositrory contains the files to deploy a Kubernetes cluster on AWS. The i
 You'll find 2 versions for deploying a Kuberneted Cluster
 
 * version v1: In this version the cluster is made of 1 control node + 1 worker node. Both nodes are not not in an ASG.
-* version v2: In this version we create 1 control node with 2 worker nodes created in an ASG. That way we can easily create an many worker nodes as we need. 
+* version v2: In this version we create 1 control node with 2 worker nodes created in an ASG. That way we can easily create an many worker nodes as we need.
 
 
 Prerequisites:
@@ -25,7 +25,7 @@ Prerequisites:
 
 	$ chmod 400 kube-access.pem
 
-* Create a user terraform in AWS, create a profile for this user with awscli and export the following environment variable for Terraform 
+* Create a user terraform in AWS, create a profile for this user with awscli and export the following environment variable for Terraform
 
     $ export ACCESS_KEY=$(aws configure get aws_access_key_id --profile terraform)
 
@@ -37,7 +37,7 @@ Prerequisites:
 
 In this version we use Terraform to generate Ansible inventory file dynamically. To do so Terraform uses a template file that it polulates at runtime. Once the infrastructure is created you can check connectivity wiith "ansible -m ping all".
 
-<pre>
+```
 v1
 ├── ansible
 │   ├── ansible.cfg
@@ -56,7 +56,7 @@ v1
     ├── inventory.tpl
     ├── main.tf
     └── variable.tf
-</pre>
+```
 
 To deploy v1, navigate to the terraform directory and run
 
@@ -64,7 +64,7 @@ If not done already initialize your terraform workspace.
 
     $ terraform init
 
-then preview the changes Terraform will make with 
+then preview the changes Terraform will make with
 
     $ terraform plan
 
@@ -86,7 +86,7 @@ To delete all resources, go to the terraform directory and run
 
 ## version v2:
 
-With this version we create 1 control node with 2 worker nodes created in an ASG. In this version we enable inventory plugins in ansible to dynamically retrieve the worker nodes IP addresses. 
+With this version we create 1 control node with 2 worker nodes created in an ASG. In this version we enable inventory plugins in ansible to dynamically retrieve the worker nodes IP addresses.
 
 ```
 v2
@@ -164,4 +164,3 @@ To setup the K8s cluster, navigate to the ansible directory and run
 To delete all resources, go to the terraform directory and run
 
     $ terraform destroy -auto-approve
-

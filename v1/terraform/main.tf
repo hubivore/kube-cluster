@@ -19,7 +19,7 @@ data "aws_availability_zones" "available" {}
 
 # Retreive ssh key name
 data "aws_key_pair" "existing" {
-  key_name = "wserver-access"
+  key_name = "kube-access"
 }
 
 # Show available AZs
@@ -150,7 +150,7 @@ resource "aws_security_group" "kube-security-group" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    self = true
+    self        = true
   }
 
   # NodePort Services

@@ -19,7 +19,7 @@ data "aws_availability_zones" "available" {}
 
 # Retreive ssh key name
 data "aws_key_pair" "existing" {
-  key_name = "wserver-access"
+  key_name = "kube-access"
 }
 
 # Show available AZs
@@ -152,6 +152,15 @@ resource "aws_security_group" "kube-security-group" {
     to_port     = 32767
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # NodePort Services
+  ingress {
+    description = "Allow all traffic from this SG"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    self        = true
   }
 
   egress {

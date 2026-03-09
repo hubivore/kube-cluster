@@ -25,19 +25,6 @@
         var: kubeadm_init.stdout_lines
       when: kubeadm_init is defined
 
-    - name: Render kubeadm config
-      template:
-        src: ../templates/kubeadm-config.yaml.j2
-        dest: /tmp/kubeadm-config.yaml
-      when: not k8s_admin_conf.stat.exists
-
-    - name: Initialize Kubernetes cluster
-      command: kubeadm init --config /tmp/kubeadm-config.yaml
-      args:
-        creates: /etc/kubernetes/admin.conf
-      register: kubeadm_init
-      when: not k8s_admin_conf.stat.exists
-
     - name: Show kubeadm init output
       debug:
         var: kubeadm_init.stdout_lines

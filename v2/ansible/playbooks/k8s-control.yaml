@@ -22,25 +22,7 @@
 
     - name: Show kubeadm init output
       debug:
-        var: kubeadm_init.stdout_lines
-      when: kubeadm_init is defined
-
-    - name: Render kubeadm config
-      template:
-        src: ../templates/kubeadm-config.yaml.j2
-        dest: /tmp/kubeadm-config.yaml
-      when: not k8s_admin_conf.stat.exists
-
-    - name: Initialize Kubernetes cluster
-      command: kubeadm init --config /tmp/kubeadm-config.yaml
-      args:
-        creates: /etc/kubernetes/admin.conf
-      register: kubeadm_init
-      when: not k8s_admin_conf.stat.exists
-
-    - name: Show kubeadm init output
-      debug:
-        var: kubeadm_init.stdout_lines
+        var: kubeadm_init
       when: kubeadm_init is defined
 
     - name: Create .kube directory
@@ -65,11 +47,19 @@
       environment:
         KUBECONFIG: /home/ubuntu/.kube/config
       ansible.builtin.shell: |
-        aws s3 cp s3://kube-cluster-config/calico/3.30.3/manifests/operator-crds.yaml /tmp/operator-crds.yaml
-        aws s3 cp s3://kube-cluster-config/calico/3.30.3/manifests/tigera-operator.yaml /tmp/tigera-operator.yaml
-        aws s3 cp s3://kube-cluster-config/calico/3.30.3/manifests/custom-resources.yaml /tmp/custom-resources.yaml
-        kubectl create -f /tmp/operator-crds.yaml
-        kubectl create -f /tmp/tigera-operator.yaml
-        kubectl create -f /tmp/custom-resources.yaml
+        kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.4/manifests/operator-crds.yaml
+        kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.4/manifests/tigera-operator.yaml
       when: not k8s_admin_conf.stat.exists
 
+    - name: Upload the custom resources necessary to configure Calico v3.30.3
+      template:
+        src: ../templates/custom-resources.yaml.j2
+        dest: /tmp/custom-resources.yaml
+
+    - name: Install Custom Resource
+      become_user: ubuntu
+      environment:
+        KUBECONFIG: /home/ubuntu/.kube/config
+      ansible.builtin.shell: |
+        kubectl create -f /tmp/custom-resources.yaml
+      when: not k8s_admin_conf.stat.exists
