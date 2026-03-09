@@ -28,7 +28,9 @@ Prerequisites:
 * Create a user terraform in AWS, create a profile for this user with awscli and export the following environment variable for Terraform 
 
     $ export ACCESS_KEY=$(aws configure get aws_access_key_id --profile terraform)
+
     $ export SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile terraform)
+
     $ export AWS_DEFAULT_REGION=$(aws configure get region --profile terraform)
 
 ## Version v1:
