@@ -42,20 +42,21 @@ v1
 ├── ansible
 │   ├── ansible.cfg
 │   ├── inventory
-│   │   └── hosts.init
+│   ├── keypair
+│   │   └── kube-access.pem
 │   ├── playbooks
 │   │   ├── k8s-cluster-setup.yaml
 │   │   ├── k8s-common.yaml
 │   │   ├── k8s-control.yaml
 │   │   └── k8s-workers.yaml
 │   └── templates
+│       ├── custom-resources.yaml.j2
 │       └── kubeadm-config.yaml.j2
 └── terraform
     ├── inventory.tpl
     ├── main.tf
     └── variable.tf
 </pre>
-
 
 To deploy v1, navigate to the terraform directory and run
 
@@ -92,8 +93,6 @@ v2
 ├── ansible
 │   ├── ansible.cfg
 │   ├── aws_ec2.yaml
-│   ├── inventory
-│   │   └── hosts.init
 │   ├── playbooks
 │   │   ├── k8s-cluster-setup.yaml
 │   │   ├── k8s-common.yaml
@@ -104,8 +103,6 @@ v2
 └── terraform
     ├── inventory.tpl
     ├── main.tf
-    ├── terraform.tfstate
-    ├── terraform.tfstate.backup
     └── variable.tf
 ```
 
