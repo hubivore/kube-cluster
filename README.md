@@ -42,21 +42,18 @@ v1
 ├── ansible
 │   ├── ansible.cfg
 │   ├── inventory
-│   │   └── local-hosts.init
+│   │   └── hosts.init
 │   ├── playbooks
 │   │   ├── k8s-cluster-setup.yaml
 │   │   ├── k8s-common.yaml
 │   │   ├── k8s-control.yaml
 │   │   └── k8s-workers.yaml
 │   └── templates
-│       ├── kubeadm-config.yaml
 │       └── kubeadm-config.yaml.j2
 └── terraform
     ├── inventory.tpl
     ├── main.tf
     └── variable.tf
-
-
 </pre>
 
 
@@ -96,14 +93,13 @@ v2
 │   ├── ansible.cfg
 │   ├── aws_ec2.yaml
 │   ├── inventory
-│   │   └── local-hosts.init
+│   │   └── hosts.init
 │   ├── playbooks
 │   │   ├── k8s-cluster-setup.yaml
 │   │   ├── k8s-common.yaml
 │   │   ├── k8s-control.yaml
 │   │   └── k8s-workers.yaml
 │   └── templates
-│       ├── kubeadm-config.yaml
 │       └── kubeadm-config.yaml.j2
 └── terraform
     ├── inventory.tpl
