@@ -86,7 +86,7 @@ To delete all resources, go to the terraform directory and run
 
 ## version v2:
 
-With this version we create 1 control node with 2 worker nodes created in an ASG. In this version we enable inventory plugins in ansible to dynamically retrieve the worker nodes IP addresses.
+With this version we create 1 control node with 2 worker nodes created in an ASG. In this version we enable the AWS inventory plugins in ansible to dynamically retrieve the nodes public DNS name.
 
 ```
 v2
