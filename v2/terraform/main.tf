@@ -237,7 +237,7 @@ resource "aws_iam_role_policy_attachment" "s3_write_attach" {
 # Create control node
 resource "aws_instance" "control-node" {
   ami                  = data.aws_ami.ubuntu.id
-  instance_type        = "t3a.small"
+  instance_type        = "t3a.medium"
   subnet_id            = aws_subnet.public_subnets["public_subnet_1"].id
   key_name             = data.aws_key_pair.existing.key_name
   iam_instance_profile = aws_iam_instance_profile.clusternode_profile.name
